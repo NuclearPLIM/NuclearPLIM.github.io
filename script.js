@@ -19,7 +19,7 @@ var popoverYear = new mdb.Popover(document.querySelector('#year_panel').parentEl
 function init() {
 
     var query = new google.visualization.Query(
-        'https://cors-anywhere.herokuapp.com/https://docs.google.com/spreadsheets/d/1wBB4VbBn-ULczixgqPvbMcSzHQ9825yYvL78GAOz0mM/gviz/tq?range=A1:BE646', headers=0);
+        'https://docs.google.com/spreadsheets/d/1wBB4VbBn-ULczixgqPvbMcSzHQ9825yYvL78GAOz0mM/gviz/tq?range=A1:BE646', headers=0);
     query.send(handleQueryResponse);
 
     function handleQueryResponse(response){
@@ -525,7 +525,7 @@ window.addEventListener('click', function(e) {
       return;
     } else if (document.activeElement === document.querySelector("#cardgif2")) {
       var queryConstuctPlanned = new google.visualization.Query(
-        'https://cors-anywhere.herokuapp.com/https://docs.google.com/spreadsheets/d/1wBB4VbBn-ULczixgqPvbMcSzHQ9825yYvL78GAOz0mM/gviz/tq?range=A1:T118', headers=2, gid=1476615709);
+        'https://docs.google.com/spreadsheets/d/1wBB4VbBn-ULczixgqPvbMcSzHQ9825yYvL78GAOz0mM/gviz/tq?range=A1:T118', headers=2, gid=1476615709);
         queryConstuctPlanned.send(ConstuctPlannedResponse);
       }
     
@@ -657,7 +657,7 @@ document.querySelector('#cardgif3').addEventListener('click', function(e){
     } else if (document.activeElement === document.querySelector("#cardgif3")) {
       console.log("dooooo");
       var queryStartups = new google.visualization.Query(
-        'https://cors-anywhere.herokuapp.com/https://docs.google.com/spreadsheets/d/1wBB4VbBn-ULczixgqPvbMcSzHQ9825yYvL78GAOz0mM/gviz/tq?range=A1:J91', headers=1, gid="602722967");
+        'https://docs.google.com/spreadsheets/d/1wBB4VbBn-ULczixgqPvbMcSzHQ9825yYvL78GAOz0mM/gviz/tq?range=A1:J91', headers=1, gid="602722967");
         queryStartups.send(StartupsResponse);
       }
   
