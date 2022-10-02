@@ -5,7 +5,7 @@
   height: 3px;
   width: 0%;
   z-index: 100000;
-  background-color: #BEE9E2;
+  background-color: #dd1367;
   /* background-color: #aaaaaa; */
   position: fixed;
   top: 0;
@@ -42,7 +42,7 @@ body {
 font-family: "Poppins", sans-serif;
 font-weight: 400;
 color: #fff;
-  height: 10000px;
+/* height: 10000px; */
 }
 
 
@@ -62,12 +62,14 @@ h1 {
 font-family: "Inconsolata", serif;
 font-size: 9rem;
 font-weight: 700;
+z-index: 2000;
 }
 h2 {
 font-family: "Inconsolata", sans-serif;
 font-size: 3rem;
 font-weight: 700;
 font-style: bold;
+z-index: 2000;
 }
 
 .lead {
@@ -82,6 +84,7 @@ font-weight: 420;
 /* highlight imprortant text in backgrond */
 .text-background-highlight-yellow{
   position: relative;
+  z-index: 0;
 }
 
 .text-background-highlight-yellow::before{
@@ -121,7 +124,7 @@ font-weight: 420;
   position: absolute;
   content: "";
   height: 70%;
-  width: 0%;
+  width: 100%;
   z-index: -1;
   bottom: 0;
   transform: translate(-2px, 15px);
@@ -239,7 +242,8 @@ opacity: 10%;
 }
 
 .contentwrapper2{
-background-color: #9ddfd3
+background-color: #9ddfd3;
+z-index: -2;
 }
 
 /* Animated Handwriteen SVG on FLR Graph */
@@ -370,6 +374,9 @@ background-color: #9ddfd3
   /* height: 75px; */
   background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  -moz-backdrop-filter: blur(10px);
+  -ms-backdrop-filter: blur(10px);
   justify-content: center;
   align-items: start;
   /* background-color: rgba(0, 0, 0, 0.2) */
@@ -649,7 +656,7 @@ position:fixed;
 transform: scale(0.1);
 transform-style: preserve-3d;
 animation: raise 25s linear infinite;
-top: 50%;
+top: 0%;
   z-index: -1;
 }
 .atomsvgyellow{
@@ -659,7 +666,7 @@ position:fixed;
 transform: scale(0.1);
 transform-style: preserve-3d;
 animation: raise 35s linear infinite;
-top: 50%;
+top: 0%;
   z-index: -1;
 }
 
@@ -669,6 +676,7 @@ top: 50%;
   animation-delay: -1s; 
   transform: scale(0.5) rotate(30deg); 
   right: 10%;
+  top: -50%;
   /* filter: blur(25px);
   -webkit-filter: blur(25px);
   -moz-filter: blur(25px);
@@ -679,8 +687,9 @@ top: 50%;
   /* left: 20%; */
   /* animation: raise 22s linear infinite;  */
   animation-delay: -10s; 
-  transform: scale(0.2) rotate(60deg); 
-  right: 34%;
+  transform: scale(0.5) rotate(60deg); 
+  right: 65%;
+  top: -10%;
   /* filter: blur(20PX);
   -webkit-filter: blur(20PX);
   -moz-filter: blur(20PX);
@@ -692,7 +701,8 @@ top: 50%;
   /* animation: raise 21s linear infinite;  */
   animation-delay: -4s; 
   transform: scale(0.35) rotate(270deg); 
-  left: 20%;
+  left: 35%;
+  top: -70%;
   /* filter: blur(15PX);
   -webkit-filter: blur(15PX);
   -moz-filter: blur(15PX);
@@ -703,8 +713,9 @@ top: 50%;
   /* left: -10%; */
   /* animation: raise 25s linear infinite; */
   animation-delay: -8s; 
-  transform: scale(0.3) rotate(300deg); 
+  transform: scale(0.4) rotate(300deg); 
   right: 82%;
+  top: -15%;
   /* filter: blur(29px);
   -webkit-filter: blur(29px);
   -moz-filter: blur(29px);
@@ -714,8 +725,9 @@ top: 50%;
   /* left: 25%; */
   /* animation: raise 17s linear infinite; */
   animation-delay: -8s; 
-  transform: scale(0.28) rotate(330deg); 
-  left: 45%;
+  transform: scale(0.7) rotate(330deg); 
+  left: 65%;
+  top: 0%;
   /* filter: blur(16PX);
   -webkit-filter: blur(16PX);
   -moz-filter: blur(16PX);
@@ -726,6 +738,7 @@ top: 50%;
   /* animation: raise 10s linear infinite; */
   animation-delay: -1s; 
   transform: scale(0.27) rotate(116deg); 
+  top: 10%;
   /* filter: blur(17px);
   -webkit-filter: blur(17px);
   -moz-filter: blur(17px);
@@ -735,8 +748,9 @@ top: 50%;
   /* left: -33%; */
   /* animation: raise 8s linear infinite; */
   animation-delay: -9s; 
-  transform: scale(0.38) rotate(250deg); 
-  right: 30%;
+  transform: scale(0.5) rotate(250deg); 
+  right: 70%;
+  top: 40%;
   /* filter: blur(19px);
   -webkit-filter: blur(19px);
   -moz-filter: blur(19px);
@@ -748,6 +762,7 @@ top: 50%;
   animation-delay: -8s; 
   transform: scale(0.22) rotate(30deg); 
   left: 34%;
+  top: -4%;
   /* filter: blur(30px);
   -webkit-filter: blur(30px);
   -moz-filter: blur(30px);
@@ -759,15 +774,16 @@ top: 50%;
   animation-delay: -3s; 
   transform: scale(0.30) rotate(90deg); 
   right: 57%;
+  top: 5%;
   /* filter: blur(20px);
   -webkit-filter: blur(20px);
   -moz-filter: blur(20px);
   -ms-filter: blur(20px); */
 }
 
-@keyframes raise {
+/* @keyframes raise {
   to{
   top: -150%;
-  /* transform: rotate(10deg); */
+  transform: rotate(10deg);
   }
-}
+} */
