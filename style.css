@@ -87,6 +87,8 @@ h2 {
 }
 
 /* highlight imprortant text in backgrond */
+
+
 .text-background-highlight-yellow{
     position: relative;
     z-index: 0;
@@ -157,8 +159,8 @@ h2 {
     background-color: #dd1367;
     z-index: 500;
     color: white;
-    opacity: 0%;
-    transition: 1s;
+    /* opacity: 0%; */
+    /* transition: 1s; */
 }
 
 .yellow-card{
@@ -305,6 +307,67 @@ h2 {
 
 #FLR-yaxis{
     transform: rotate(-90deg);
+}
+
+
+/* FLR Plant Type Radio Buttons */
+.flr-plant-type {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 2em;
+}
+.flr-plant-type > input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+.flr-plant-type > label {
+  position: relative;
+  margin-right: 0.5em;
+  padding-left: 2em;
+  padding-right: 1em;
+  line-height: 2;
+  cursor: pointer;
+}
+
+.flr-plant-type > label::before {
+  box-sizing: border-box;
+  content: " ";
+  position: absolute;
+  top: 0.3em;
+  left: 0;
+  display: block;
+  width: 1.4em;
+  height: 1.4em;
+  border: 2px solid white;
+  border-radius: .25em;
+  z-index: -1;
+}
+
+.flr-plant-type > input[type="radio"] + label::before {
+  border-radius: 1em;
+}
+
+/* Checked */
+.flr-plant-type > input[type="radio"]:checked + label {
+  padding-left: 1em;
+  color: #dd1367;
+}
+
+.flr-plant-type > input[type="radio"]:checked + label::before {
+  top: 0;
+  width: 100%;
+  height: 2em;
+  background: white;
+}
+
+/* Transition */
+.flr-plant-type > label,
+.flr-plant-type > label::before {
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
 }
 
 
@@ -807,4 +870,6 @@ h2 {
     transform: rotate(10deg);
     }
   } */
+
+
 
