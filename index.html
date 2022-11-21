@@ -13,10 +13,8 @@
   <!-- Google Fonts Roboto -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
 <!-- MDB -->
-<link
-  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css"
-  rel="stylesheet"
-/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css"
+  rel="stylesheet" />
   <!-- Custom CSS -->
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -59,7 +57,7 @@
                   <div class="col-lg-8 justify-content-center"> 
                     <div class="card-body py-4 px-md-5">
                       <h2 class="fw-bold mb-4 text-primary display-5">What's driving the change?<br></h2> 
-                      <h5 class="text-muted">Nuclear power plant construction peaked in the 1970s and declined throughout the 1990s and 2000s. The average age of the nuclear power fleet increased by 66% over the past 20 years 
+                      <h5 class="text-muted">Nuclear power plant construction peaked in the 1970s and declined throughout the 1990s and 2000s. The average age of the nuclear power fleet increased by 66% over the past 20 years. 
                         <br>
                       </h5> 
                       
@@ -129,11 +127,12 @@
 
     </div>
 
-    <div class="contentwrapper2 section-blur" style="height: 2300px;">
+    <div class="contentwrapper2 section-blur" style="height: 3000px;">
       <div id="section2">
         <section class="container pt-5 text-center text-lg-start mb-10" >
-          <h2 class="fw-bold mb-5 text-center text-primary mb-0"><span class="text-background-highlight-yellow">Why does this matter?</span></h2> 
-          <div class="row d-flex pt-5" style="height: 2100px;">
+          <h2 class="fw-bold mb-5 text-center text-primary mb-0 d-none d-sm-block"><span class="text-background-highlight-yellow">Why does this matter?</span></h2> 
+          <h2 style="background-color: #F7CA66;" class="fw-bold mb-5 text-center text-primary mb-0 d-block d-sm-none"><span>Why does this matter?</span></h2> 
+          <div class="row d-flex pt-5" style="height: 2600px;">
 
             <div class="col-lg-4 mt-3 mt-0-lg d-none d-lg-block">
               <div class="row h-100 justify-content-end">
@@ -165,9 +164,58 @@
                   <div class="sticky-top pt-3 pt-lg-5">
                   <div class="yellow-card card">
                     <div class="card-body">
-                      <h4>Afterwards, trend of forced loss
+                      <h4>Afterwards, the trend of forced loss
                       <span class="fw-bold">increases linearly</span>
                       as plants age.</h4> 
+                    </div>
+                  </div>
+                  </div>
+                </div>
+
+                <div class="col-12 mt-3 py-5">
+                  <div class="sticky-top pt-3 pt-lg-5">
+                  <div class="blue-card card">
+                    <div class="card-body">
+                      <h4>FLR demonstrates a
+                      <span class="fw-bold">different relationship</span>
+                      to age depending on plant type:
+                      </h4> 
+                      <div class="flr-plant-type">
+                        <input type="radio" name="rb" id="rbAll" />
+                        <label for="rbAll" data-mdb-toggle="tooltip" data-mdb-placement="top" title="All reactor types">All</label>
+                        <input type="radio" name="rb" id="rbPWR" />
+                        <label for="rbPWR" data-mdb-toggle="tooltip" data-mdb-placement="top" title="Pressurized Water Reactors">PWR</label>
+                        <input type="radio" name="rb" id="rbPHWR" />
+                        <label for="rbPHWR" data-mdb-toggle="tooltip" data-mdb-placement="top" title="Pressurized Heavy Water Reactors">PHWR</label>
+                        <input type="radio" name="rb" id="rbBWR" />
+                        <label for="rbBWR" data-mdb-toggle="tooltip" data-mdb-placement="top" title="Boiling Water Reactors">BWR</label>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+
+
+                
+                <div class="col-12 mt-3 py-5">
+                  <div class="sticky-top pt-3 pt-lg-5">
+                  <div class="FLRcardcolumn red-card card">
+                    <div class="card-body">
+                      <h4>Aging plants also experience an increase in 
+                      <span class="fw-bold">planned outage durations</span>
+                      to perform inspections and maintenance.</h4> 
+                    </div>
+                  </div>
+                  </div>
+                </div>
+
+                <div class="col-12 mt-3 pt-5 mb-14">
+                  <div class="sticky-top pt-3 pt-lg-5">
+                  <div class="yellow-card card">
+                    <div class="card-body">
+                      <h4>An increase in forced losses and longer planned outages cause
+                      <span class="fw-bold">Unit Capability Factor</span>
+                      to decrease as plants age.</h4> 
                     </div>
                   </div>
                   </div>
@@ -178,7 +226,7 @@
             <div class="col-lg-8 mt-3 mt-0-lg sticky-top py-2 py-lg-5">
               <div class="green-card card flex-grow-1">
                 <div class="card-body">
-                  <h5 class="fw-bold text-center">Yearly Forced Loss Rate vs Plant Age (2001 - 2021)</h5>
+                  <h5 class="fw-bold text-center" id="flrGraphTitle">Yearly Forced Loss Rate vs Plant Age (2001 - 2021)</h5>
                   <p id="FLR-yaxis" class="mt-0 position-absolute top-50 start-0">Yearly FLR</p>
                   <div class="p-0 mb-0"> 
 
@@ -255,6 +303,48 @@
                     </div>
                   </div>
                 </div>
+
+                <div class="col-12 mt-3">
+                  <div class="blue-card card sticky-top">
+                    <div class="card-body px-2">
+                      <h4>FLR demonstrates a
+                      <span class="fw-bold">different relationship</span>
+                      to age depending on plant type:
+                      </h4> 
+                      <div class="flr-plant-type justify-content-center">
+                        <input type="radio" name="rb" id="rbAll2" />
+                        <label for="rbAll2">All</label>
+                        <input type="radio" name="rb" id="rbPWR2" />
+                        <label for="rbPWR2">PWR</label>
+                        <input type="radio" name="rb" id="rbPHWR2" />
+                        <label for="rbPHWR2">PHWR</label>
+                        <input type="radio" name="rb" id="rbBWR2" />
+                        <label for="rbBWR2">BWR</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 mt-3 py-5">
+                  <div class="FLRcardcolumn red-card card sticky-top">
+                    <div class="card-body">
+                      <h4>Aging plants also experience an increase in 
+                      <span class="fw-bold">planned outage durations</span>
+                      to perform inspections and maintenance.</h4> 
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 mt-3 pt-5 mb-14">
+                  <div class="yellow-card card sticky-top">
+                    <div class="card-body">
+                      <h4>An increase in forced losses and longer planned outages cause
+                      <span class="fw-bold">Unit Capability Factor</span>
+                      to decrease as plants age.</h4> 
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
 
@@ -269,7 +359,8 @@
         <div id="section3" data-draggable="true" class="pb-5">
           <section draggable="false" class="container pt-5" data-v-271253ee="">
             <section class="mb-10"> 
-              <h2 class="fw-bold mb-5 text-center"><span class="text-background-highlight-red">How is the industry responding?</span></h2> 
+              <h2 class="fw-bold mb-5 text-center d-none d-lg-block"><span class="text-background-highlight-red">How is the industry responding?</span></h2> 
+              <h2 style="background-color: #dd1367;" class="fw-bold mb-5 text-center d-block d-lg-none"><span>How is the industry responding?</span></h2> 
               <!-- align-items-center -->
               <div class="row gx-lg-5 blur py-4"> 
                 <div class="col-lg-4 mb-5 mb-lg-0"> 
@@ -1209,7 +1300,6 @@
                       <!-- Grid row -->
                     </div>
                   <!-- Section: Links  -->
-
                   <!-- Copyright -->
                   <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
                   </div>
@@ -1217,7 +1307,7 @@
                 </footer>
                 <!-- Footer -->
               </div>
-     
+                
                 </section>
               </section>
           </div>
