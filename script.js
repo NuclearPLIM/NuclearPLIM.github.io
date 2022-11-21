@@ -69,8 +69,8 @@ function init() {
         // theme: "maximized",
         legend: { position: "in", alignment: "end"},
         focusTarget: 'datum',
-        vAxis: {maxValue: 300, title: "Number of Reactors", gridlines: {colour:'#cccccc'}, minorGridlines: {color: '#cccccc'}},
-        hAxis: {maxValue: 60, title: "Age in Years"},
+        vAxis: {maxValue: 300, title: "Number of Reactors", gridlines: {color:'#cccccc'}, minorGridlines: {color: '#cccccc'}},
+        hAxis: {maxValue: 60, title: "Age in Years", gridlines: {color:'#cccccc'}},
         histogram: { 
           bucketSize: 10,
           maxValue: 50,
@@ -289,198 +289,170 @@ function drawFLRChart(){
   var dataFLR = new google.visualization.DataTable();
   dataFLR.addColumn('number', 'Plant Age');
   dataFLR.addColumn('number', 'Yearly Forced Loss Rate');
+  dataFLR.addColumn({type:'boolean', role:'scope'});
+  dataFLR.addColumn('number', 'FLR Trend');
+  dataFLR.addColumn('number', 'Yearly Forced Loss Rate (PHWR)');
+  dataFLR.addColumn('number', 'Yearly Forced Loss Rate (PWR)');
+  dataFLR.addColumn('number', 'Yearly Forced Loss Rate (BWR)');
+  dataFLR.addColumn('number', 'Yearly Unit Capability Factor');
+  dataFLR.addColumn('number', 'UCF Trend');
+  dataFLR.addColumn('number', 'Yearly Unit Capability Factor (PHWR)');
+  dataFLR.addColumn('number', 'Yearly Unit Capability Factor (PWR)');
+  dataFLR.addColumn('number', 'Yearly Unit Capability Factor (BWR)');
 
 
-
+  // age, flr, scope, flr avg, PHWR, BWR, PWR, ucf, ucfAvg, ucfPHWR, ucfBWR, ucfPWR
   dataFLR.addRows([
-    [0, 2.007],
-    [1, 7.645365854],
-    [2, 5.667021277],
-    [3, 4.866],
-    [4, 3.072473118],
-    [5, 2.838695652],
-    [6, 3.785],
-    [7, 2.710697674],
-    [8, 2.79902439],
-    [9, 1.98720930],
-    [10, 1.995909091],
-    [11, 2.021573034],
-    [12, 2.73106383,],
-    [13, 2.350196078],
-    [14, 2.667235772],
-    [15, 2.435874126],
-    [16, 2.684191617],
-    [17, 2.834009901],
-    [18, 2.762237443],
-    [19, 3.131120332],
-    [20, 3.335059761],
-    [21, 3.879219331],
-    [22, 3.720683453],
-    [23, 3.331731449],
-    [24, 3.700912162],
-    [25, 3.841140065],
-    [26, 3.325527157],
-    [27, 3.299237805],
-    [28, 2.782100592],
-    [29, 3.414473684],
-    [30, 3.184633431],
-    [31, 3.254726225],
-    [32, 3.760202899],
-    [33, 3.493283582],
-    [34, 3.915975232],
-    [35, 3.683232323],
-    [36, 2.861151079],
-    [37, 3.321755102],
-    [38, 4.158720379],
-    [39, 4.028351064],
-    [40, 3.630365854],
-    [41, 3.805625],
-    [42, 3.905916667],
-    [43, 4.592596154],
-    [44, 2.644347826],
-    [45, 2.375853659],
+    [0, 2.007, false, null, null, null, 2.01, 96.74, 86.75,  null,  null,	96.74],
+    [1, 7.645365854, false, null, 24.38, 0.00, 5.40, 88.75, 86.52, 74.91, 100.0,	90.57],
+    [2, 5.667021277, false, null, 9.54, 14.71, 4.54, 81.18, 86.29,	86.86,	85.29,	79.97],
+    [3, 4.866, false, null, 5.82, 41.44, 2.69, 83.24, 86.06,	85.03,	44.84,	84.88],
+    [4, 3.072473118, false, null, 4.62, 4.12, 2.69, 86.11, 85.83,	89.63,	67.31,	86.56],
+    [5, 2.838695652, true, 2.6144, 4.95, 4.46, 2.16, 84.37, 85.60,	87.83,	72.25,	84.72],
+    [6, 3.785, true, 2.6434, 6.75, 18.06, 1.72, 87.42, 85.37,	89.32,	72.00,	88.60],
+    [7, 2.710697674, true, 2.6724, 6.58, 6.44, 0.97, 84.07, 85.14,	85.42,	56.22,	87.54],
+    [8, 2.79902439, true, 2.7014, 4.40, 3.44, 1.63, 85.49, 84.91,	91.64,	69.89,	86.44],
+    [9, 1.98720930, true, 2.7304, 2.80, 0.81, 1.93, 86.21, 84.68,	90.40,	68.55,	87.91],
+    [10, 1.995909091, true, 2.7594, 3.57, 0.52, 1.68, 85.65, 84.45,	91.47,	67.46,	86.67],
+    [11, 2.021573034, true, 2.7884, 2.60, 0.20, 2.18, 83.02, 84.22,	90.03,	52.18,	85.79],
+    [12, 2.73106383, true, 2.8174, 3.12, 3.10, 2.51, 83.35, 83.99,	89.92,	59.96,	86.10],
+    [13, 2.350196078, true, 2.8464, 1.94, 3.16, 2.00, 82.57, 83.76,	89.89,	59.36,	85.14],
+    [14, 2.667235772, true, 2.8754, 2.48, 1.71, 1.98, 82.27, 83.53,	90.84,	59.78,	84.58],
+    [15, 2.435874126, true, 2.9044, 2.37, 2.00, 2.08, 84.20, 83.29,	90.44,	64.74,	87.11],
+    [16, 2.684191617, true, 2.9334, 2.54, 2.81, 2.28, 83.02, 83.06,	87.71,	64.45,	85.52],
+    [17, 2.834009901, true, 2.9624, 1.90, 5.28, 2.00, 81.72, 82.83,	76.22,	67.24,	86.23],
+    [18, 2.762237443, true, 2.9914, 3.36, 4.43, 2.10, 82.15, 82.60,	77.26,	71.87,	86.19],
+    [19, 3.131120332, true, 3.0204, 4.42, 3.70, 2.14, 80.60, 82.37,	82.39,	69.62,	83.45],
+    [20, 3.335059761, true, 3.0494, 4.83, 3.33, 2.61, 81.35, 82.14,	83.99,	70.46,	83.83],
+    [21, 3.879219331, true, 3.0784, 5.91, 2.11, 3.21, 80.58, 81.91,	82.57,	72.33,	83.15],
+    [22, 3.720683453, true, 3.1074, 7.70, 2.99, 2.69, 80.88, 81.68,	81.68,	78.95,	82.47],
+    [23, 3.331731449, true, 3.1364, 3.13, 1.34, 3.11, 79.42, 81.45,	78.21,	77.30,	81.45],
+    [24, 3.700912162, true, 3.1654, 8.94, 2.80, 2.35, 80.96, 81.22,	78.63,	77.82,	83.65],
+    [25, 3.841140065, true, 3.1944, 5.04, 5.21, 2.86, 80.21, 80.99,	84.07,	73.69,	83.01],
+    [26, 3.325527157, true, 3.2234, 4.55, 4.37, 2.09, 81.34, 80.76,	80.34,	74.62,	84.91],
+    [27, 3.299237805, true, 3.2524, 5.36, 3.97, 2.39, 81.11, 80.53,	73.84,	79.19,	83.17],
+    [28, 2.782100592, true, 3.2814, 5.71, 3.13, 1.86, 81.25, 80.30,	68.63,	77.80,	84.59],
+    [29, 3.414473684, true, 3.3104, 7.01, 3.38, 2.56, 80.32, 80.07,	66.22,	78.88,	83.78],
+    [30, 3.184633431, true, 3.3394, 5.13, 2.98, 2.11, 79.02, 79.84,	71.30,	76.60,	81.45],
+    [31, 3.254726225, true, 3.3684, 5.28, 1.97, 2.70, 78.11, 79.61,	76.13,	76.81,	79.82],
+    [32, 3.760202899, true, 3.3974, 3.79, 3.42, 2.90, 77.99, 79.38,	80.76,	77.15,	78.96],
+    [33, 3.493283582, true, 3.4264, 8.73, 3.67, 2.69, 79.67, 79.15,	81.09,	77.89,	80.36],
+    [34, 3.915975232, true, 3.4554, 4.33, 3.92, 3.35, 78.72, 78.92,	76.71,	74.73,	80.75],
+    [35, 3.683232323, true, 3.4844, 5.59, 4.43, 3.06, 79.39, 78.68,	69.08,	81.22,	80.52],
+    [36, 2.861151079, true, 3.5134, 7.86, 2.57, 1.95, 78.55, 78.45,	67.18,	81.67,	79.75],
+    [37, 3.321755102, true, 3.5424, 9.17, 0.98, 2.80, 79.08, 78.22,	64.33,	84.51,	79.40],
+    [38, 4.158720379, true, 3.5714, 10.19, 3.61, 2.80, 77.21, 77.99,	69.39,	81.98,	78.11],
+    [39, 4.028351064, true, 3.6004, 11.86, 2.77, 2.94, 78.24, 77.76,	71.25,	84.94,	77.30],
+    [40, 3.630365854, true, 3.6294, 11.65, 2.21, 2.25, 76.43, 77.53,	66.34,	81.21,	78.81],
+    [41, 3.805625, true, 3.6584, 5.98, 2.40, 3.53, 79.63, 77.30,	85.06,	83.05,	78.24],
+    [42, 3.905916667, true, 3.6874, 7.47, 4.58, 2.98, 76.30, 77.07,	69.13,	79.02,	76.57],
+    [43, 4.592596154, true, 3.7164, 9.97, 7.38, 1.90, 76.55, 76.84,	79.45,	79.77,	76.39],
+    [44, 2.644347826, true, 3.7454, 8.44, 1.05, 1.97, 77.91, 76.61,	72.82,	84.12,	79.00],
+    [45, 2.375853659, true, 3.7744, 5.37, 2.62, 0.71, 79.72, 76.38,	76.38,	85.71,	82.34],
   ])    
   
+  var FLRView = new google.visualization.DataView(dataFLR);
+  FLRView.setColumns([0,1])
 
     var FLRoptions={
       backgroundColor: 'transparent',
       width: "20%",
       height: 500,
-      // title: 'Yearly Forced Loss Rate vs Plant Age (2001 - 2021)',
-      // titleTextStyle: {fontName: "Poppins", fontSize: 18},
       theme: "maximized",
       legend: { position: "none" },
-      vAxis: {maxValue: 8},
-      hAxis: {viewWindow:{max: 50}},
+      vAxis: {viewWindow:{min: 0}, maxValue: 8, gridlines: {color:'#8b8b8b'}, minorGridlines: {color: '#cccccc'}},
+      hAxis: {viewWindow:{max: 50}, gridlines: {color:'#8b8b8b'}},
       seriesType: "scatter",
-      series: {1: {type: "line", lineDashStyle: [10, 2]}},
+      series: {1: {type: "line", lineDashStyle: [10, 2]}, 6: {type: "line", lineDashStyle: [10, 2]}},
       animation:{
-      duration: 1600,
-      easing: 'out',
+      duration: 1300,
+      easing: 'linear',
     }
   }
 
   var FLRchart = new google.visualization.ComboChart(document.querySelector('#FLRvisualilzation'));
 
-  FLRchart.draw(dataFLR, FLRoptions)
-
-  // add break-in years and trendline
-  dataFLR.addColumn({type:'boolean', role:'scope'});
-  dataFLR.addColumn('number', 'FLR Trend');
-
-  dataFLR.setCell(0, 2, false);
-  dataFLR.setCell(1, 2, false);
-  dataFLR.setCell(2, 2, false);
-  dataFLR.setCell(3, 2, false);
-  dataFLR.setCell(4, 2, false);
-  dataFLR.setCell(5, 2, true);
-  dataFLR.setCell(6, 2, true);
-  dataFLR.setCell(7, 2, true);
-  dataFLR.setCell(8, 2, true);
-  dataFLR.setCell(9, 2, true);
-  dataFLR.setCell(10, 2, true);
-  dataFLR.setCell(11, 2, true);
-  dataFLR.setCell(12, 2, true);
-  dataFLR.setCell(13, 2, true);
-  dataFLR.setCell(14, 2, true);
-  dataFLR.setCell(15, 2, true);
-  dataFLR.setCell(16, 2, true);
-  dataFLR.setCell(17, 2, true);
-  dataFLR.setCell(18, 2, true);
-  dataFLR.setCell(19, 2, true);
-  dataFLR.setCell(20, 2, true);
-  dataFLR.setCell(21, 2, true);
-  dataFLR.setCell(22, 2, true);
-  dataFLR.setCell(23, 2, true);
-  dataFLR.setCell(24, 2, true);
-  dataFLR.setCell(25, 2, true);
-  dataFLR.setCell(26, 2, true);
-  dataFLR.setCell(27, 2, true);
-  dataFLR.setCell(28, 2, true);
-  dataFLR.setCell(29, 2, true);
-  dataFLR.setCell(30, 2, true);
-  dataFLR.setCell(31, 2, true);
-  dataFLR.setCell(32, 2, true);
-  dataFLR.setCell(33, 2, true);
-  dataFLR.setCell(34, 2, true);
-  dataFLR.setCell(35, 2, true);
-  dataFLR.setCell(36, 2, true);
-  dataFLR.setCell(37, 2, true);
-  dataFLR.setCell(38, 2, true);
-  dataFLR.setCell(39, 2, true);
-  dataFLR.setCell(40, 2, true);
-  dataFLR.setCell(41, 2, true);
-  dataFLR.setCell(42, 2, true);
-  dataFLR.setCell(43, 2, true);
-  dataFLR.setCell(44, 2, true);
-  dataFLR.setCell(45, 2, true);
-
-  dataFLR.setCell(0, 3, null);
-  dataFLR.setCell(1, 3, null);
-  dataFLR.setCell(2, 3, null);
-  dataFLR.setCell(3, 3, null);
-  dataFLR.setCell(4, 3,  null);
-  dataFLR.setCell(5, 3,  2.6144);
-  dataFLR.setCell(6, 3,  2.6434);
-  dataFLR.setCell(7, 3,  2.6724);
-  dataFLR.setCell(8, 3,  2.7014);
-  dataFLR.setCell(9, 3,  2.7304);
-  dataFLR.setCell(10, 3, 2.7594);
-  dataFLR.setCell(11, 3, 2.7884);
-  dataFLR.setCell(12, 3, 2.8174);
-  dataFLR.setCell(13, 3, 2.8464);
-  dataFLR.setCell(14, 3, 2.8754);
-  dataFLR.setCell(15, 3, 2.9044);
-  dataFLR.setCell(16, 3, 2.9334);
-  dataFLR.setCell(17, 3, 2.9624);
-  dataFLR.setCell(18, 3, 2.9914);
-  dataFLR.setCell(19, 3, 3.0204);
-  dataFLR.setCell(20, 3, 3.0494);
-  dataFLR.setCell(21, 3, 3.0784);
-  dataFLR.setCell(22, 3, 3.1074);
-  dataFLR.setCell(23, 3, 3.1364);
-  dataFLR.setCell(24, 3, 3.1654);
-  dataFLR.setCell(25, 3, 3.1944);
-  dataFLR.setCell(26, 3, 3.2234);
-  dataFLR.setCell(27, 3, 3.2524);
-  dataFLR.setCell(28, 3, 3.2814);
-  dataFLR.setCell(29, 3, 3.3104);
-  dataFLR.setCell(30, 3, 3.3394);
-  dataFLR.setCell(31, 3, 3.3684);
-  dataFLR.setCell(32, 3, 3.3974);
-  dataFLR.setCell(33, 3, 3.4264);
-  dataFLR.setCell(34, 3, 3.4554);
-  dataFLR.setCell(35, 3, 3.4844);
-  dataFLR.setCell(36, 3, 3.5134);
-  dataFLR.setCell(37, 3, 3.5424);
-  dataFLR.setCell(38, 3, 3.5714);
-  dataFLR.setCell(39, 3, 3.6004);
-  dataFLR.setCell(40, 3, 3.6294);
-  dataFLR.setCell(41, 3, 3.6584);
-  dataFLR.setCell(42, 3, 3.6874);
-  dataFLR.setCell(43, 3, 3.7164);
-  dataFLR.setCell(44, 3, 3.7454);
-  dataFLR.setCell(45, 3, 3.7744);
+  FLRchart.draw(FLRView, FLRoptions)
 
 
   window.addEventListener('scroll', () => {
 
-    pixelsfromCW2 = document.querySelector(".contentwrapper2").getBoundingClientRect().top;
-      
+    const CW2 = document.querySelector(".contentwrapper2");
+    const pixelsfromCW2 = CW2.getBoundingClientRect().top;
+    const heightCW2 = CW2.getBoundingClientRect().height;
 
-    if (pixelsfromCW2 < -1000){
+      console.log(pixelsfromCW2/heightCW2);
+
+    if (pixelsfromCW2 < -1600){
+      FLRView.setColumns([0,7,8]);
+      FLRoptions.vAxis.viewWindow.min = 50;
+      FLRchart.draw(FLRView, FLRoptions);
+      document.querySelector('#flrGraphTitle').innerHTML = "Yearly Unit Capability Factor vs Plant Age (2001 - 2021)";
+      document.querySelector('#FLR-yaxis').innerHTML = "Yearly UCF";
+      document.querySelector('#rbAll').checked = true;
+      document.querySelector('#rbAll2').checked = true;
+      document.querySelector(".BreakInOverlay").style.display = "none"; 
+      document.querySelector(".TrendOverlay").style.display = "none";  
+    }
+    else if(pixelsfromCW2 < -1000){
+    }
+    else if (pixelsfromCW2 < -800){
+      FLRView.setColumns([0,1,2,3]);
+      FLRoptions.vAxis.viewWindow.min = 0;
+      FLRchart.draw(FLRView, FLRoptions); 
+      document.querySelector('#rbAll').checked = true;
+      document.querySelector('#rbAll2').checked = true;
       document.querySelector("#point2").classList.add("animate-point");
       document.querySelector("#arrow2").classList.add("animate-arrow");
-      document.querySelector(".TrendOverlay").style.opacity = "100%"
+      document.querySelector(".TrendOverlay").style.opacity = "100%";
+      document.querySelector('#flrGraphTitle').innerHTML = "Yearly Forced Loss Rate vs Plant Age (2001 - 2021)"
     }
     else if (pixelsfromCW2 < -200) {
-      FLRchart.draw(dataFLR, FLRoptions)  
-      console.log("hidog");
+      FLRView.setColumns([0,1,2,3]);
+      FLRchart.draw(FLRView, FLRoptions); 
+      document.querySelector('#rbAll').checked = true;
+      document.querySelector('#rbAll2').checked = true;
       document.querySelector("#point").classList.add("animate-point");
       document.querySelector("#arrow").classList.add("animate-arrow");
-      document.querySelector(".BreakInOverlay").style.opacity = "100%"
+      document.querySelector(".BreakInOverlay").style.opacity = "100%";
+      document.querySelector('#flrGraphTitle').innerHTML = "Yearly Forced Loss Rate vs Plant Age (2001 - 2021)"
       }
   }, false);
+
+  var flrPlantTypeGroups = document.querySelectorAll(".flr-plant-type");
+
+  flrPlantTypeGroups.forEach(function(item) {
+    item.addEventListener('click', function(e) {
+    var flrPlantTypeRadios = item.querySelectorAll('input');
+    for (let i = 0; i < flrPlantTypeRadios.length; i++) {
+      if (flrPlantTypeRadios[i].checked == true) {
+        FLRoptions.vAxis.viewWindow.min = 0;
+        document.querySelector('#flrGraphTitle').innerHTML = "Yearly Forced Loss Rate vs Plant Age (2001 - 2021)"
+        document.querySelector("#point").style.opacity = "0%";
+        document.querySelector("#arrow").style.opacity = "0%";
+        document.querySelector(".BreakInOverlay").style.display = "none";  
+        document.querySelector("#point2").style.opacity = "0%";
+        document.querySelector("#arrow2").style.opacity = "0%";
+        document.querySelector(".TrendOverlay").style.display = "none";  
+        if (flrPlantTypeRadios[i].id == 'rbAll' || flrPlantTypeRadios[i].id == 'rbAll2') {
+          FLRView.setColumns([0,1,2,3]);
+          FLRchart.draw(FLRView, FLRoptions);
+        } else if (flrPlantTypeRadios[i].id == 'rbPHWR' || flrPlantTypeRadios[i].id == 'rbPHWR2') {
+          FLRView.setColumns([0,4]);
+          FLRchart.draw(FLRView, FLRoptions); 
+        } else if (flrPlantTypeRadios[i].id == 'rbBWR' || flrPlantTypeRadios[i].id == 'rbBWR2') {
+          FLRView.setColumns([0,5]);
+          FLRchart.draw(FLRView, FLRoptions); 
+        } else if (flrPlantTypeRadios[i].id == 'rbPWR' || flrPlantTypeRadios[i].id == 'rbPWR2') {
+          FLRView.setColumns([0,6]);
+          FLRchart.draw(FLRView, FLRoptions); 
+        }
+      } ;
+    }
+
+  })
+})
+
 
 }
 
@@ -678,7 +650,6 @@ document.querySelector('#cardgif3').addEventListener('click', function(e){
       console.log(e.target.closest('.visualizationCard'));
       return;
     } else if (document.activeElement === document.querySelector("#cardgif3")) {
-      console.log("dooooo");
       var queryStartups = new google.visualization.Query(
         'https://docs.google.com/spreadsheets/d/1wBB4VbBn-ULczixgqPvbMcSzHQ9825yYvL78GAOz0mM/gviz/tq?range=A1:J91', headers=1, gid="602722967");
         queryStartups.send(StartupsResponse);
