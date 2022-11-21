@@ -406,9 +406,11 @@ function drawFLRChart(){
       document.querySelector("#arrow2").classList.add("animate-arrow");
       document.querySelector(".TrendOverlay").style.opacity = "100%";
       document.querySelector('#flrGraphTitle').innerHTML = "Yearly Forced Loss Rate vs Plant Age (2001 - 2021)"
+      document.querySelector('#FLR-yaxis').innerHTML = "Yearly FLR";
     }
     else if (pixelsfromCW2 < -200) {
       FLRView.setColumns([0,1,2,3]);
+      FLRoptions.vAxis.viewWindow.min = 0;
       FLRchart.draw(FLRView, FLRoptions); 
       document.querySelector('#rbAll').checked = true;
       document.querySelector('#rbAll2').checked = true;
@@ -416,6 +418,7 @@ function drawFLRChart(){
       document.querySelector("#arrow").classList.add("animate-arrow");
       document.querySelector(".BreakInOverlay").style.opacity = "100%";
       document.querySelector('#flrGraphTitle').innerHTML = "Yearly Forced Loss Rate vs Plant Age (2001 - 2021)"
+      document.querySelector('#FLR-yaxis').innerHTML = "Yearly FLR";
       }
   }, false);
 
@@ -428,6 +431,7 @@ function drawFLRChart(){
       if (flrPlantTypeRadios[i].checked == true) {
         FLRoptions.vAxis.viewWindow.min = 0;
         document.querySelector('#flrGraphTitle').innerHTML = "Yearly Forced Loss Rate vs Plant Age (2001 - 2021)"
+        document.querySelector('#FLR-yaxis').innerHTML = "Yearly FLR";
         document.querySelector("#point").style.opacity = "0%";
         document.querySelector("#arrow").style.opacity = "0%";
         document.querySelector(".BreakInOverlay").style.display = "none";  
