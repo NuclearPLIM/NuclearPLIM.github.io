@@ -13,14 +13,56 @@
   <!-- Google Fonts Roboto -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
 <!-- MDB -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css"
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css"
   rel="stylesheet" />
   <!-- Custom CSS -->
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Circle Packing Dependencies -->
+  <!-- D3.js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+	<script src="http://d3js.org/queue.v1.min.js"></script>
+
+	<!-- stats -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r14/Stats.js"></script>
+	
+	<!-- jQuery -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  
+
+
+  <style>
+    .node {
+      cursor: pointer;
+    }
+    
+    .node:hover {
+      stroke: #000;
+      stroke-width: 1.5px;
+    }
+    
+    .node--leaf {
+      fill: white;
+    }
+    
+    .label {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      text-anchor: middle;
+      text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
+    }
+    
+    .label,
+    .node--root,
+    .node--leaf {
+      pointer-events: none;
+    }
+    </style>
+
+
 </head>
 
 <body>
-  <!-- Start your project here-->
+
   <div class="progress"></div>
 
       <div style="position: relative;" data-draggable="true" draggable="false" class="hero-panel">
@@ -90,10 +132,14 @@
                           </div>
 
                         </div> 
+                      </div> 
+                    </div> 
                   </div> 
                 </div> 
-              </div> 
-            </div> 
+              </div>
+
+              
+
           
           </section>
         </section>
@@ -125,6 +171,16 @@
       </div>
 
 
+    </div>
+
+
+    <div class="contentwrapperCircles py-5">
+
+      <div  id="cardCirclePacking" class="container green-card card my-5 align-items-center"> 
+        <h2 class="fw-bold my-4 text-primary display-5">What is the current situation?<br></h2> 
+        <h5 class="text-muted mx-5 mb-2">Older plants shown in Red are concentrated in North America and Europe while newer plants in Green are largely in Asia, where most new construction has occured over the past decade. Size of each bubble correlate to the installaed capacity at each site.</h5>
+          <div id="chart"></div>
+      </div>
     </div>
 
     <div class="contentwrapper2 section-blur" style="height: 3000px;">
@@ -1040,7 +1096,7 @@
                       </div> 
                     <div class="flex-grow-1 ms-4 justify-content-center gif-card-desc"> 
                       <p class="fw-bold mb-1">Plant Modernization Assessments</p> 
-                      <p class="mb-0">The modernization of existing nuclear plants is key to enabling long-term operations. The Electric Power Reasearch Institue (EPRI) tracks assessments on plant modernization submitted by stakeholders across the nuclear industry.</p> 
+                      <p class="mb-0">The modernization of existing nuclear plants is key to enabling long-term operations. The Electric Power Research Institute (EPRI) tracks assessments on plant modernization submitted by stakeholders across the nuclear industry.</p> 
                     </div> 
                   </div> 
 
@@ -1366,6 +1422,8 @@
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <!-- Custom scripts -->
   <script src="script.js"></script>
+  <script src="circle packing.js"></script>
+
 </body>
 
 </html>
