@@ -2,7 +2,7 @@ var root = {
   "name": "Table",
   "children": [
     {
-      "name": "Latin America",
+      "name": "Other",
       "children": [
         {
           "name": "Argentina",
@@ -54,6 +54,21 @@ var root = {
                   "name": "Laguna Verde",
                   "size": 1552,
                   "age": 34.2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "South Africa",
+          "children": [
+            {
+              "name": "PWR",
+              "children": [
+                {
+                  "name": "Koeberg",
+                  "size": 1854,
+                  "age": 38.8
                 }
               ]
             }
@@ -1325,25 +1340,6 @@ var root = {
           ]
         }
       ]
-    },
-    {
-      "name": "Africa",
-      "children": [
-        {
-          "name": "South Africa",
-          "children": [
-            {
-              "name": "PWR",
-              "children": [
-                {
-                  "name": "Koeberg",
-                  "size": 38.8
-                }
-              ]
-            }
-          ]
-        }
-      ]
     }
   ]
 };
@@ -1428,7 +1424,7 @@ var text = svg.selectAll("text")
   })
   .text(function(d) {
     if (d.size) {
-      return d.name + '\r\n' + d.size;
+      return d.name + '\r\n(' + d.age + ' YO)';
     } else { 
       return d.name;
     }
